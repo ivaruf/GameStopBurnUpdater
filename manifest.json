@@ -15,5 +15,5 @@
       "js": ["jquery.js", "content.js"]
     }
   ],
-  "icons": { "48": "kostika.png" }
+  "icons": { "48": "burned-kostika.png" }
 }
