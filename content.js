@@ -10,23 +10,28 @@ burnMap = new Map([
 function supply(item) {
     return item.minted - item.burned
 }
-function hasMintedQuantity(targetSpan, itemDetails) {
-    return targetSpan[0].innerHTML.indexOf(itemDetails.minted) != -1;
+function editionsLoaded(targetSpan, itemDetails) {
+    var editions = targetSpan[0].innerHTML
+    var hasMintedQuantity = editions.indexOf(itemDetails.minted) != -1
+    var availableLoaded = editions.indexOf("0/" + itemDetails.minted) == -1
+    console.log(editions)
+
+    return hasMintedQuantity && availableLoaded;
 }
 
 async function updateEditonsElement(itemDetails) {
     var attempts = 0
     query = 'span:contains("/minted available")'.replace("minted", itemDetails.minted)
-    while (attempts < 10) {
+    while (attempts < 100) {
         query = 'span:contains("/minted available")'.replace("minted", itemDetails.minted)
         var targetSpan = $(query)
-        if (targetSpan[0] !== undefined && hasMintedQuantity(targetSpan, itemDetails)) {
+        if (targetSpan[0] !== undefined && editionsLoaded(targetSpan, itemDetails)) {
             var updateValue = targetSpan[0]
             var newValue = updateValue.innerHTML.replace(itemDetails.minted, supply(itemDetails))
             updateValue.innerHTML = newValue
             break;
         }
-        await new Promise(r => setTimeout(r, 1000));
+        await new Promise(r => setTimeout(r, 100));
         attempts++;
     }
 }
