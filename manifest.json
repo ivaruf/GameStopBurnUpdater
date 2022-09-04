@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "GameStopBurnUpdater/",
-  "version": "0.1",
+  "version": "0.2",
   "host_permissions": ["https://nft.gamestop.com/token*"],
   "web_accessible_resources": [{
     "resources" : ["helpers.js"],
