@@ -6,7 +6,7 @@ Simple chrome extension that will update the available editions for burned items
 
 ## Install
 * Download and unzip the extension: https://github.com/ivaruf/GameStopBurnUpdater/archive/refs/heads/master.zip
-* Open in chrome: [extensions](chrome://extensions)
+* Copy to chrome address bar: chrome://extensions
 * Enable developer (mode switch in top right corner)
 * Click "load unpacked" button
 * Select directory of unzipped extension
