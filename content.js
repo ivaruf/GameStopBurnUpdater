@@ -1,7 +1,5 @@
 // content.js
-
-// Tasks
-// TODO get rid of jQuery?
+var GameStopBurnMap = undefined
 
 function supply(item) {
     return item.minted - item.burned
@@ -40,6 +38,14 @@ async function burnAdjust() {
     }
 }
 
-burnAdjust()
+
+$.get( "https://raw.githubusercontent.com/ivaruf/GameStopBurnUpdater/burn-map-experiment/GameStopTokenBurnMap.js", function( burnMap ) {
+    GameStopTokenBurnMap = JSON.parse    
+
+    console.log(burnMap)
+    eval(burnMap)
+    burnAdjust()
+});
+
 
 
