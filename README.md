@@ -10,3 +10,5 @@ Simple chrome extension that will update the available editions for burned items
 * Enable developer (mode switch in top right corner)
 * Click "load unpacked" button
 * Select directory of unzipped extension
+
+You should be good to go!
