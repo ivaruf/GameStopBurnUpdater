@@ -11,21 +11,20 @@ function supply(item) {
     return item.minted - item.burned
 }
 function editionsLoaded(targetSpan, itemDetails) {
-    var editions = targetSpan[0].innerHTML
-    var hasMintedQuantity = editions.indexOf(itemDetails.minted) != -1
-    var availableLoaded = editions.indexOf("0/" + itemDetails.minted) == -1
-    console.log(editions)
-
-    return hasMintedQuantity && availableLoaded;
+    if (targetSpan[0] !== undefined) {
+        var editions = targetSpan[0].innerHTML
+        var hasMintedQuantity = editions.indexOf(itemDetails.minted) != -1
+        var availableLoaded = editions.indexOf("0/" + itemDetails.minted) == -1
+        return hasMintedQuantity && availableLoaded;
+    }
 }
 
 async function updateEditonsElement(itemDetails) {
     var attempts = 0
     query = 'span:contains("/minted available")'.replace("minted", itemDetails.minted)
     while (attempts < 100) {
-        query = 'span:contains("/minted available")'.replace("minted", itemDetails.minted)
         var targetSpan = $(query)
-        if (targetSpan[0] !== undefined && editionsLoaded(targetSpan, itemDetails)) {
+        if (editionsLoaded(targetSpan, itemDetails)) {
             var updateValue = targetSpan[0]
             var newValue = updateValue.innerHTML.replace(itemDetails.minted, supply(itemDetails))
             updateValue.innerHTML = newValue
