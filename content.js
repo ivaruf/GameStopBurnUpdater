@@ -39,12 +39,13 @@ async function burnAdjust() {
 }
 
 
-$.get( "https://raw.githubusercontent.com/ivaruf/GameStopBurnUpdater/burn-map-experiment/GameStopTokenBurnMap.js", function( burnMap ) {
-    GameStopTokenBurnMap = JSON.parse    
-
-    console.log(burnMap)
-    eval(burnMap)
-    burnAdjust()
+$.get( "https://raw.githubusercontent.com/ivaruf/GameStopBurnUpdater/burn-map-experiment/GameStopTokenBurnMap.json", function( burnMap ) {
+    var jsonBurnMap = JSON.parse(burnMap)
+    //alsmot, key are 0 - > 3 try again
+    GameStopBurnMap = new Map(Object.entries(jsonBurnMap.GameStopBurnMap));   
+    // onto something here ...
+    console.log(GameStopBurnMap)
+    //burnAdjust()
 });
 
 
