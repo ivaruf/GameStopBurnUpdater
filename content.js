@@ -1,9 +1,10 @@
 // content.js
-var GameStopBurnMap = undefined
+const GameStopBurnMap = new Map();
 
 function supply(item) {
     return item.minted - item.burned
 }
+
 function editionsLoaded(targetSpan, item) {
     if (targetSpan[0] !== undefined) {
         var editions = targetSpan[0].innerHTML
@@ -32,21 +33,41 @@ async function updateEditonsElement(item) {
 
 async function burnAdjust() {
     token = window.location.href.split("/")[5]
-    var item = GameStopTokenBurnMap.get(token)
+    var item = GameStopBurnMap.get(token)
     if (item !== undefined) {
         updateEditonsElement(item)
     }
 }
 
+if (GameStopBurnMap.size > 0) {
+    burnAdjust()
+} else {
+    $.get("https://raw.githubusercontent.com/ivaruf/GameStopBurnUpdater/burn-map-experiment/GameStopTokenBurnMap.json", function (burnMap) {
+        for (const [_, entry] of Object.entries(JSON.parse(burnMap).GameStopBurnMap)) {
+            Object.entries(entry).forEach(([key, value]) => {
+                var item = {
+                    "minted": value.minted,
+                    "burned": value.burned
+                }
+                GameStopBurnMap.set(key, item)
+            })
+        }
 
-$.get( "https://raw.githubusercontent.com/ivaruf/GameStopBurnUpdater/burn-map-experiment/GameStopTokenBurnMap.json", function( burnMap ) {
-    var jsonBurnMap = JSON.parse(burnMap)
-    //alsmot, key are 0 - > 3 try again
-    GameStopBurnMap = new Map(Object.entries(jsonBurnMap.GameStopBurnMap));   
-    // onto something here ...
-    console.log(GameStopBurnMap)
-    //burnAdjust()
-});
+        console.log(GameStopBurnMap)
+        burnAdjust()
+    });
+}
+
+
+//on window.location.href change
+window.addEventListener('hashchange', function () {
+    burnAdjust()
+}, false);
+
+
+
+
+
 
 
 
