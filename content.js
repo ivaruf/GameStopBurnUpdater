@@ -39,30 +39,19 @@ async function burnAdjust() {
     }
 }
 
-if (GameStopBurnMap.size > 0) {
+$.get("https://raw.githubusercontent.com/ivaruf/GameStopBurnUpdater/master/data/GameStopTokenBurnMap.json", function (burnMap) {
+
+    for (const [key, value] of Object.entries(JSON.parse(burnMap))) {
+            var item = {
+                "minted": value.minted,
+                "burned": value.burned
+            }
+            GameStopBurnMap.set(key, item)
+    }
+
+    console.log(GameStopBurnMap)
     burnAdjust()
-} else {
-    $.get("https://raw.githubusercontent.com/ivaruf/GameStopBurnUpdater/burn-map-experiment/GameStopTokenBurnMap.json", function (burnMap) {
-        for (const [_, entry] of Object.entries(JSON.parse(burnMap).GameStopBurnMap)) {
-            Object.entries(entry).forEach(([key, value]) => {
-                var item = {
-                    "minted": value.minted,
-                    "burned": value.burned
-                }
-                GameStopBurnMap.set(key, item)
-            })
-        }
-
-        console.log(GameStopBurnMap)
-        burnAdjust()
-    });
-}
-
-
-//on window.location.href change
-window.addEventListener('hashchange', function () {
-    burnAdjust()
-}, false);
+});
 
 
 
