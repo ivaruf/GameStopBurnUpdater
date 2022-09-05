@@ -8,8 +8,8 @@ function supply(item) {
 function editionsLoaded(targetSpan, item) {
     if (targetSpan[0] !== undefined) {
         var editions = targetSpan[0].innerHTML
-        var hasMintedQuantity = editions.indexOf(item.minted) != -1
-        var availableLoaded = editions.indexOf("0/" + item.minted) == -1
+        var hasMintedQuantity = editions.indexOf(item.minted) !== -1
+        var availableLoaded = editions !== "0/" + item.minted + " available"
         return hasMintedQuantity && availableLoaded;
     }
 }
@@ -39,19 +39,36 @@ async function burnAdjust() {
     }
 }
 
-$.get("https://raw.githubusercontent.com/ivaruf/GameStopBurnUpdater/master/data/GameStopTokenBurnMap.json", function (burnMap) {
+// Gamestop marketplace uses some strange history handling, so we just watch any linked clicked and try to update burns
+function callback(e) {
+    var e = window.e || e;
 
-    for (const [key, value] of Object.entries(JSON.parse(burnMap))) {
+    if (e.target.tagName !== 'A') {
+        return;
+    }
+
+    burnAdjust();
+}
+
+if (document.addEventListener) {
+    document.addEventListener('click', callback, false);
+} else {
+    document.attachEvent('onclick', callback);
+}
+
+$(document).ready(function () {
+    $.get("https://raw.githubusercontent.com/ivaruf/GameStopBurnUpdater/master/data/GameStopTokenBurnMap.json", function (burnMap) {
+
+        for (const [key, value] of Object.entries(JSON.parse(burnMap))) {
             var item = {
                 "minted": value.minted,
                 "burned": value.burned
             }
             GameStopBurnMap.set(key, item)
-    }
-
-    console.log(GameStopBurnMap)
-    burnAdjust()
-});
+        }
+        burnAdjust()
+    });
+})
 
 
 
