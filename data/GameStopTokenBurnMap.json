@@ -1,17 +1,37 @@
 {
   "0x3b66eead9d7f4d57d7f33aa3a5e27971fef9d8381ccdde8792bc2e2b084aac56": {
-    "burned": 225,
+    "burned": 234,
     "minted": 500,
     "name": "#01_Fake Heels"
   },
   "0x11087ebd3afcc64d149baab2a843a291a35dab35e046d89d9659bf1fc0f50f84": {
-    "burned": 258,
+    "burned": 264,
     "minted": 500,
     "name": "#05_Kostika"
   },
   "0x6e364e871068cb5b0150266ea7c39a458cc026b393b2049f4f31a9a910d60e9c": {
-    "burned": 255,
+    "burned": 260,
     "minted": 500,
     "name": "#04_Draconya"
+  },
+  "0x30cc497a8553e6a5c9a6d517eb1fb245584c8be873260888f330a907918a8246": {
+    "burned": 26,
+    "minted": 500,
+    "name": "#02_Cypher"
+  },
+  "0xd274401ee98d4eb17b9e7c0b30bbb9a8fc746fe369b084db61b233348cd590b1": {
+    "burned": 30,
+    "minted": 500,
+    "name": "#03_Trypo"
+  },
+  "0x369f5965b82fb05c33c59ad6ef0c031598248602900440fbf11e7b334389236a": {
+    "burned": 22,
+    "minted": 500,
+    "name": "#06_Balexx"
+  },
+  "0xb23be050586d672ef96131f3a23e0d1e9726275bc0fdaa260f96fef7ab24fb16": {
+    "burned": 2,
+    "minted": 153,
+    "name": "#Kroma_dr3am"
   }
 }
