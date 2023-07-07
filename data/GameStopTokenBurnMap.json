@@ -1,11 +1,11 @@
 {
   "0x3b66eead9d7f4d57d7f33aa3a5e27971fef9d8381ccdde8792bc2e2b084aac56": {
-    "burned": 234,
+    "burned": 237,
     "minted": 500,
     "name": "#01_Fake Heels"
   },
   "0x11087ebd3afcc64d149baab2a843a291a35dab35e046d89d9659bf1fc0f50f84": {
-    "burned": 264,
+    "burned": 265,
     "minted": 500,
     "name": "#05_Kostika"
   },
@@ -15,17 +15,17 @@
     "name": "#04_Draconya"
   },
   "0x30cc497a8553e6a5c9a6d517eb1fb245584c8be873260888f330a907918a8246": {
-    "burned": 26,
+    "burned": 40,
     "minted": 500,
     "name": "#02_Cypher"
   },
   "0xd274401ee98d4eb17b9e7c0b30bbb9a8fc746fe369b084db61b233348cd590b1": {
-    "burned": 30,
+    "burned": 39,
     "minted": 500,
     "name": "#03_Trypo"
   },
   "0x369f5965b82fb05c33c59ad6ef0c031598248602900440fbf11e7b334389236a": {
-    "burned": 22,
+    "burned": 37,
     "minted": 500,
     "name": "#06_Balexx"
   },
